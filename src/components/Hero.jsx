@@ -10,7 +10,7 @@ export default function Hero() {
           Hi, I’m Dipak Jayswal
         </h1>
         <p className="text-gray-300 text-xl md:text-2xl">
-          A passionate Full-Stack Developer building modern web applications
+         I am a passionate Full-Stack Developer specializing in building modern web and mobile applications that deliver seamless user experiences and robust performance.
         </p>
         <a
           href="#contact"
@@ -23,7 +23,7 @@ export default function Hero() {
       {/* Image Section */}
       <div className="flex-1 mt-12 md:mt-0 flex justify-center animate-fadeInRight">
         <img
-          src="https://media.licdn.com/dms/image/v2/C4E03AQE16VY8U8DmjQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1635446307649?e=1753920000&v=beta&t=G1hJArNDTcsrt_AOVNAt3vaLHlUTnRXWhDtUypoYcxw" // Put your professional image here
+          src="https://media.licdn.com/dms/image/v2/C4E03AQE16VY8U8DmjQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1635446307649?e=1753920000&v=beta&t=G1hJArNDTcsrt_AOVNAt3vaLHlUTnRXWhDtUypoYcxw" 
           alt="Dipak Jayswal"
           className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-indigo-400 shadow-lg"
         />

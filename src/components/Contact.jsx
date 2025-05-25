@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
   const [status, setStatus] = useState(null);
 
@@ -15,40 +16,54 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
-      setStatus({ type: 'error', message: 'Please fill in all fields.' });
-      return;
-    }
-    // Simple email regex check
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setStatus({ type: 'error', message: 'Please enter a valid email.' });
+      setStatus({ type: "error", message: "Please fill in all fields." });
       return;
     }
 
-    // Simulate sending message
-    setStatus({ type: 'success', message: 'Message sent successfully!' });
-    setFormData({ name: '', email: '', message: '' });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setStatus({ type: "error", message: "Please enter a valid email." });
+      return;
+    }
+
+    emailjs
+      .send(
+        "service_312f7jq",
+        "template_5soxaum",
+        formData,
+        "PTNbubpWr9qhp9KcY"
+      )
+      .then(() => {
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        setStatus({
+          type: "error",
+          message: "Something went wrong. Please try again.",
+        });
+      });
   };
 
   return (
     <div className="max-w-xl mx-auto">
-      <h2 className="text-4xl font-bold text-indigo-400 mb-8 text-center">Contact Me</h2>
-
+      <h2 className="text-4xl font-bold text-indigo-400 mb-8 text-center">
+        Contact Me
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-6 text-gray-300">
+        {/* Input fields */}
         <div>
           <label htmlFor="name" className="block mb-2 font-semibold">
             Name
           </label>
           <input
             type="text"
-            id="name"
             name="name"
-            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none transition"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Your Name"
+            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none"
             required
           />
         </div>
@@ -59,12 +74,10 @@ export default function Contact() {
           </label>
           <input
             type="email"
-            id="email"
             name="email"
-            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none transition"
             value={formData.email}
             onChange={handleChange}
-            placeholder="you@example.com"
+            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none"
             required
           />
         </div>
@@ -74,13 +87,11 @@ export default function Contact() {
             Message
           </label>
           <textarea
-            id="message"
             name="message"
             rows="5"
-            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none transition resize-none"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Write your message..."
+            className="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 focus:border-indigo-400 focus:outline-none resize-none"
             required
           />
         </div>
@@ -95,7 +106,7 @@ export default function Contact() {
         {status && (
           <p
             className={`mt-4 text-center ${
-              status.type === 'success' ? 'text-green-400' : 'text-red-400'
+              status.type === "success" ? "text-green-400" : "text-red-400"
             }`}
           >
             {status.message}

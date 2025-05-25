@@ -13,7 +13,7 @@ function App() {
         <nav className="container mx-auto flex justify-between items-center p-4">
           <a href="#hero" className="text-2xl font-bold hover:text-indigo-400">MyPortfolio</a>
           <ul className="flex space-x-6 text-lg">
-            {['hero','about','skills','projects','contact','resume'].map((sec) => (
+            {['home','about','skills','projects','contact','resume'].map((sec) => (
               <li key={sec}>
                 <a href={`#${sec}`} className="hover:text-indigo-400 capitalize">{sec}</a>
               </li>
@@ -23,7 +23,7 @@ function App() {
       </header>
 
       <main className="pt-19">
-        <section id="hero"><Hero /></section>
+        <section id="home"><Hero /></section>
          <section id="about" className="container mx-auto px-4 py-20"><About /></section>
      <section id="skills" className="container mx-auto px-4 py-20"><Skills /></section>
           <section id="projects" className="container mx-auto px-4 py-20"><Projects /></section>
